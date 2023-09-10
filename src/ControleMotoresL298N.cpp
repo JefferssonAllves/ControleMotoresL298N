@@ -22,31 +22,32 @@ void ControleMotoresL298N::acionar(short velocidadeEsquerda, short velocidadeDir
 {
   if (velocidadeEsquerda >= 0)
   {
+    velocidadeEsquerda = map(velocidadeEsquerda, 0, 255, 125, 255);
     digitalWrite(PORTAS_MOTORES[0], 1);
     digitalWrite(PORTAS_MOTORES[1], 0);
   }
   else
   {
-    velocidadeEsquerda *= -1;
+    velocidadeEsquerda = 255 - map(velocidadeEsquerda, -255, 0, 0, 125);
     digitalWrite(PORTAS_MOTORES[0], 0);
     digitalWrite(PORTAS_MOTORES[1], 1);
   }
 
   if (velocidadeDireita >= 0)
   {
+    velocidadeDireita = map(velocidadeDireita, 0, 255, 125, 255);
     digitalWrite(PORTAS_MOTORES[2], 1);
     digitalWrite(PORTAS_MOTORES[3], 0);
   }
   else
   {
-    velocidadeDireita *= -1;
+    velocidadeDireita = map(velocidadeDireita, 0, 255, 125, 255);
     digitalWrite(PORTAS_MOTORES[2], 0);
     digitalWrite(PORTAS_MOTORES[3], 1);
   }
 
   analogWrite(PINO_VELOCIDADE_ESQUERDA, velocidadeEsquerda);
   analogWrite(PINO_VELOCIDADE_DIREITA, velocidadeDireita);
-  
 }
 void ControleMotoresL298N::acionar(short velocidadeEsquerda, short velocidadeDireita, short time)
 {
